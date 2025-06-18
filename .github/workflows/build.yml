@@ -10,12 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Set up TeX Live
-        uses: xu-cheng/texlive-action@v2
-        with:
-          run: |
-            tlmgr install latexmk l3build fontawesome5 charter geometry titlesec tabularx array xcolor enumitem amsmath hyperref eso-pic calc bookmark lastpage changepage paracol ifthen needspace iftex
           
       - name: Compile CV
         run: |
