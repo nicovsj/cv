@@ -1,0 +1,40 @@
+name: Build and Release CV
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up TeX Live
+        uses: xu-cheng/texlive-action@v2
+        with:
+          run: |
+            tlmgr install latexmk l3build fontawesome5 charter geometry titlesec tabularx array xcolor enumitem amsmath hyperref eso-pic calc bookmark lastpage changepage paracol ifthen needspace iftex
+          
+      - name: Compile CV
+        run: |
+          pdflatex -interaction=nonstopmode cv.tex
+          pdflatex -interaction=nonstopmode cv.tex  # Run twice for references
+          
+      - name: Check if PDF was created
+        run: |
+          if [ ! -f cv.pdf ]; then
+            echo "PDF was not created"
+            exit 1
+          fi
+          
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: cv.pdf
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
