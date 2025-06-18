@@ -12,12 +12,9 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Build cv.pdf
-        uses: xu-cheng/texlive-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
-          scheme: small
-          run: |
-            apk add make
-            make
+          root_file: cv.tex
           
       - name: Check if PDF was created
         run: |
