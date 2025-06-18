@@ -1,5 +1,9 @@
 # Personal Curriculum Vitae
 
+📄 **[Download Latest CV](https://github.com/nicovsj/cv/releases/latest/download/cv.pdf)**
+
+## Compilation
+
 Compile the CV using:
 
 ```bash
