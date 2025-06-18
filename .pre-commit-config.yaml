@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: latex-compile
+        name: LaTeX Compilation Check
+        entry: bash -c 'if command -v pdflatex >/dev/null 2>&1; then pdflatex -interaction=nonstopmode cv.tex >/dev/null 2>&1; if [ $? -eq 0 ]; then echo "LaTeX compilation successful"; exit 0; else echo "LaTeX compilation failed"; exit 1; fi; else echo "pdflatex not found. Please install a LaTeX distribution."; exit 1; fi'
+        language: system
+        pass_filenames: false
+        types: [file]
+        files: \.(tex)$ 
