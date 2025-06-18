@@ -10,11 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-          
-      - name: Compile CV
-        run: |
-          pdflatex -interaction=nonstopmode cv.tex
-          pdflatex -interaction=nonstopmode cv.tex  # Run twice for references
+      
+      - name: Build cv.pdf
+        uses: xu-cheng/texlive-action@v2
+        with:
+          scheme: small
+          run: |
+            apk add make
+            make
           
       - name: Check if PDF was created
         run: |
