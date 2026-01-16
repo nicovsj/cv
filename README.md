@@ -4,10 +4,16 @@
 
 ## Compilation
 
-Compile the CV using:
+Compile the English CV using:
 
 ```bash
 pdflatex cv.tex
+```
+
+Compile the French CV using:
+
+```bash
+pdflatex cv-fr.tex
 ```
 
 ## Pre-commit Hook
